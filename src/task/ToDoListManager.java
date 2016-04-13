@@ -1,4 +1,4 @@
-/* File Name: ToDoListManager.java
+/** File Name: ToDoListManager.java
 * Course Name: CST8132
 * Lab Section: 312
 * Student Name: Lucas Melin
@@ -16,21 +16,44 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * The Class ToDoListManager.
+ */
 public class ToDoListManager {
+	
+	/** The add task. */
 	private final int ADD_TASK = 1;
+	
+	/** The toggle task complete. */
 	private final int TOGGLE_TASK_COMPLETE = 2;
+	
+	/** The remove task. */
 	private final int REMOVE_TASK = 3;
+	
+	/** The view tasks. */
 	private final int VIEW_TASKS = 4;
+	
+	/** The exit. */
 	private final int EXIT = 5;
+	
+	/** The tasks. */
 	private ArrayList<Task> tasks;
+	
+	/** The keyboard. */
 	Scanner keyboard;
 	
 
+	/**
+	 * Instantiates a new to do list manager.
+	 */
 	public ToDoListManager(){
 		keyboard = new Scanner(System.in);
 		tasks = new ArrayList<Task>();		
 	}
 	
+	/**
+	 * Run to do list.
+	 */
 	public void runToDoList(){
 		int choice = 0;
 		do {
@@ -40,19 +63,19 @@ public class ToDoListManager {
 				choice = keyboard.nextInt();
 				keyboard.nextLine(); // Clear out line-terminator characters
 				switch (choice) {
-				case 1:
+				case ADD_TASK:
 					addTask(); // Add Task				
 					break;
-				case 2:
+				case TOGGLE_TASK_COMPLETE:
 					toggleTaskComplete(); // Toggle task
 					break;
-				case 3:
+				case REMOVE_TASK:
 					removeTask(); // Remove task
 					break;
-				case 4:
+				case VIEW_TASKS:
 					viewTasks(); // View tasks			
 					break;
-				case 5:
+				case EXIT:
 					//System.out.print("Case 5");
 					break;
 				default:
@@ -68,7 +91,9 @@ public class ToDoListManager {
 		
 	}
 	
-	// Outputs menu on console, only called from runToDoList
+	/**
+	 * Show menu. Outputs menu on console, only called from runToDoList
+	 */
 	private void showMenu(){
 		System.out.print("\n1 to add a task"
 				+ "\n2 to toggle a task is completed"
@@ -79,7 +104,8 @@ public class ToDoListManager {
 	}
 	
 	
-	/*
+	/**
+	 * Adds the task.
 	 * Get inputs from the user for task title and task priority
 	 * Instantiates a Task using the constructor
 	 * Assign the reference to the Task into the ArrayList named tasks
@@ -103,7 +129,8 @@ public class ToDoListManager {
 	}
 	
 	
-	/*
+	/**
+	 * Toggle task complete.
 	 * Check that there are tasks before doing anything else
 	 * Ask user for index of Task in the ArrayList to toggle
 	 * After obtaining the Task from the ArrayList flip the isCompleted boolean.
@@ -127,7 +154,8 @@ public class ToDoListManager {
 		}	
 	}
 	
-	/*
+	/**
+	 * Removes the task.
 	 * Check that there are tasks before doing anything else
 	 * Ask user for index of Task in the ArrayList to remove
 	 * If an exception is thrown, the method ends
@@ -152,7 +180,8 @@ public class ToDoListManager {
 	}
 	
 	
-	/*
+	/**
+	 * View tasks.
 	 * Check that there are tasks before doing anything else
 	 * Loop over the ArrayList calling toString() on each Task
 	 * object as well as appending the index number to the output

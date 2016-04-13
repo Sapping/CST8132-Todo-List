@@ -11,7 +11,18 @@
 * Carolyn MacIsaac (2016) personal communication
 */
 package task;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class ToDoListLauncher.
+ */
 public class ToDoListLauncher {
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		(new ToDoListManager()).runToDoList();
 	}
