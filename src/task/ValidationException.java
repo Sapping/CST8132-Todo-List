@@ -17,7 +17,7 @@ package task;
 /**
  * The Class ValidationException.
  */
-public class ValidationException extends Exception{
+public class ValidationException extends Exception{ // should not use generic exception
 	
 	/**
 	 * Instantiates a new validation exception.

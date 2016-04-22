@@ -15,6 +15,8 @@
 * @since 1.0
 */
 package task;
+
+
 // TODO: Auto-generated Javadoc
 
 /**
@@ -42,7 +44,7 @@ public class Task {
 	}
 	
 	/**
-	 * Complete Task constructor.
+	 *  Task constructor.
 	 *
 	 * @param title the title
 	 * @param priority the priority
@@ -54,6 +56,12 @@ public class Task {
 		setPriority(priority);
 		//this.title = title;
 		//this.priority = priority;		
+	}
+	
+	public Task(String title, String priority, boolean isComplete) throws ValidationException{
+		setTitle(title);
+		setPriority(priority);
+		this.isComplete = isComplete;
 	}
 	
 	/**
@@ -77,18 +85,23 @@ public class Task {
 	 * @since 1.0
 	 */
 	public void setTitle(String title) throws ValidationException{
-		if ((title == null)||(title.trim().isEmpty())){ // Check if title is null or empty
-			throw new ValidationException("There was a problem adding a task:"
-					+ "\nTitle cannot be empty"
-					+ "\nPlease try again.");
+		if (title != null) { // Check that title is not null
+			if (title.contains("\t")) { // Check if title contains a tab character
+				throw new ValidationException("There was a problem adding a task:"
+						+ "\nTitle cannot contain tab characters" + "\nPlease try again.");
+			} else if ((title.trim().isEmpty())) { // Check if title is empty
+				throw new ValidationException(
+						"There was a problem adding a task:" + "\nTitle cannot be empty" + "\nPlease try again.");
+			} else if (title.length() > 25) {
+				throw new ValidationException("There was a problem adding a task:"
+						+ "\nTitle cannot exceed 25 characters" + "\nPlease try again.");
+			} else {
+				this.title = title.trim();
+			} 
 		}
-		else if (title.length() > 25) {
-			throw new ValidationException("There was a problem adding a task:"
-					+ "\nTitle cannot exceed 25 characters"
-					+ "\nPlease try again.");			
-		}
-		else{
-			this.title = title.trim();
+		else {
+			throw new ValidationException(
+					"There was a problem adding a task:" + "\nTitle cannot be empty" + "\nPlease try again.");
 		}
 	}
 	
@@ -122,6 +135,11 @@ public class Task {
 		// Check that the priority is either low, medium or high.
 		else if ((priority.trim().equalsIgnoreCase("low"))||(priority.trim().equalsIgnoreCase("medium"))||(priority.trim().equalsIgnoreCase("high"))) {
 			this.priority = priority.trim(); // If all the checks pass, set the string	
+		}
+		else if ((priority.trim().isEmpty() == true)){ // If there was no priority given throw a ValidationExceptions
+			throw new ValidationException("There was a problem adding a task:"
+					+ "\nPriority cannot be empty"
+					+ "\nPlease try again.");
 		}
 		else { // If the priority wasn't valid, throw a ValidationException
 			throw new ValidationException("There was a problem adding a task:"
@@ -167,4 +185,18 @@ public class Task {
 		taskDetails.append("complete");
 		return taskDetails.toString();
 	}
+	
+	/**
+	 * 
+	 */
+	public String createTabRecord(){
+		StringBuilder tabbedRecord = new StringBuilder();
+		tabbedRecord.append(getTitle());
+		tabbedRecord.append("\t");
+		tabbedRecord.append(getPriority());
+		tabbedRecord.append("\t");
+		tabbedRecord.append(getIsComplete());
+		return tabbedRecord.toString();
+	}
+	
 }

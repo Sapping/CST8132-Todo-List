@@ -1,7 +1,7 @@
 /* File: TaskTest.java
  * Author: Stanley Pieda
  * Date: 2015
- * Description: JUnit test for use in Assignment 03
+ * Description: JUnit test for use in Assignment 04
  * Note:
  * Exception handling for tests taken after book Jeff Langr, Andy Hunt and Dave Thomas (2015):
  * Jeff LAngr, Andy Hunt, Dave Thomas. (2015). Pragmatic Unit Testing in Java 8 with JUnit.
@@ -16,8 +16,6 @@ package tasktest;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import task.Task;
@@ -83,6 +81,39 @@ public class TaskTest {
 		assertEquals(message, expected, actual);
 	}
 
+	@Test // new for Assignment 4
+	public void testTaskThreeParameterConstructorTitle() throws ValidationException{
+		String expected = "test title";
+		String validPriority = "low";
+		boolean trueIsComplete = true;
+		Task task = new Task(expected, validPriority, trueIsComplete);
+		String actual = task.getTitle();
+		String message = "3 parameter constructor did not set title correctly";
+		assertEquals(message, expected, actual);
+	}
+
+	@Test // new for Assignment 4
+	public void testTaskThreeParameterConstructorPriority() throws ValidationException{
+		String expected = "low";
+		String validTitle = "a";
+		boolean trueIsComplete = true;
+		Task task = new Task(validTitle, expected, trueIsComplete);
+		String actual = task.getPriority();
+		String message = "3 parameter constructor did not set priority correctly";
+		assertEquals(message, expected, actual);
+	}
+
+	@Test // new for Assignment 4
+	public void testTaskThreeParameterConstructorIsComplete() throws ValidationException{
+		boolean expected = true;
+		String validTitle = "a";
+		String validPriority = "low";
+		Task task = new Task(validTitle, validPriority, expected);
+		boolean actual = task.getIsComplete();
+		String message = "3 parameter constructor did not set isComplete to true";
+		assertEquals(message, expected, actual);
+	}
+
 	@Test
 	public void testTaskGetSetTitle() throws ValidationException{
 		Task task = new Task();
@@ -144,6 +175,22 @@ public class TaskTest {
 
 		assertEquals(message, expected, actual);
 	}
+	
+	@Test
+	public void testTaskCreateTabRecord() throws ValidationException{
+		String goodTitle = "a";
+		String goodPriority = "low";
+		boolean goodIsComplete = true;
+		String message = "createTabRecord() did not return string in correct format";
+		String expected = String.format
+				("%s\t%s\t%s", goodTitle, goodPriority, Boolean.toString(goodIsComplete));
+		Task task = new Task(goodTitle, goodPriority, goodIsComplete);
+		
+		String actual = task.createTabRecord();
+		
+		assertEquals(message, expected, actual);
+	}
+	
 	/* these tests fail if the exception in the annotation is not thrown
 	 * Jeff Langr, Andy Hunt and Dave Thomas (2015)
 	 */
@@ -210,4 +257,141 @@ public class TaskTest {
 		Task task = new Task();
 		task.setPriority(badPriority);
 	}
+	
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstructorThrowsValidationExceptionForTitleNullString() 
+			throws ValidationException{
+		String badTitle = null;
+		String goodPriority = "low";
+		Task task = new Task(badTitle, goodPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForTitleEmptyString() 
+			throws ValidationException{
+		String badTitle = "";
+		String goodPriority = "low";
+		Task task = new Task(badTitle, goodPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForTitleWhiteSpace() 
+			throws ValidationException{
+		String badTitle = "          ";
+		String goodPriority = "low";
+		Task task = new Task(badTitle, goodPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForTitleExceeds25Characters() 
+			throws ValidationException{
+		String badTitle = "12345678901234567890123456";
+		String goodPriority = "low";
+		Task task = new Task(badTitle, goodPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForPriorityNullString() 
+			throws ValidationException{
+		String badPriority = null;
+		String goodTitle = "a";
+		Task task = new Task(goodTitle, badPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForPriorityEmptyString() 
+			throws ValidationException{
+		String badPriority = "";
+		String goodTitle = "a";
+		Task task = new Task(goodTitle, badPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForPriorityWhiteSpace() 
+			throws ValidationException{
+		String badPriority = "          ";
+		String goodTitle = "a";
+		Task task = new Task(goodTitle, badPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskTwoParameterConstuctorThrowsValidationExceptionForPriorityNotUsingHighMediumLow() 
+			throws ValidationException{
+		String badPriority = "bad-data";
+		String goodTitle = "a";
+		Task task = new Task(goodTitle, badPriority);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstructorThrowsValidationExceptionForTitleNullString() 
+			throws ValidationException{
+		String badTitle = null;
+		String goodPriority = "low";
+		boolean goodIsCompleted = true;
+		Task task = new Task(badTitle, goodPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForTitleEmptyString() 
+			throws ValidationException{
+		String badTitle = "";
+		String goodPriority = "low";
+		boolean goodIsCompleted = true;
+		Task task = new Task(badTitle, goodPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForTitleWhiteSpace() 
+			throws ValidationException{
+		String badTitle = "          ";
+		String goodPriority = "low";
+		boolean goodIsCompleted = true;
+		Task task = new Task(badTitle, goodPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForTitleExceeds25Characters() 
+			throws ValidationException{
+		String badTitle = "12345678901234567890123456";
+		String goodPriority = "low";
+		boolean goodIsCompleted = true;
+		Task task = new Task(badTitle, goodPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForPriorityNullString() 
+			throws ValidationException{
+		String badPriority = null;
+		String goodTitle = "a";
+		boolean goodIsCompleted = true;
+		Task task = new Task(goodTitle, badPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForPriorityEmptyString() 
+			throws ValidationException{
+		String badPriority = "";
+		String goodTitle = "a";
+		boolean goodIsCompleted = true;
+		Task task = new Task(goodTitle, badPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForPriorityWhiteSpace() 
+			throws ValidationException{
+		String badPriority = "          ";
+		String goodTitle = "a";
+		boolean goodIsCompleted = true;
+		Task task = new Task(goodTitle, badPriority, goodIsCompleted);
+	}
+
+	@Test(expected=ValidationException.class) // new for Assignment 4
+	public void testTaskThreeParameterConstuctorThrowsValidationExceptionForPriorityNotUsingHighMediumLow() 
+			throws ValidationException{
+		String badPriority = "bad-data";
+		String goodTitle = "a";
+		boolean goodIsCompleted = true;
+		Task task = new Task(goodTitle, badPriority, goodIsCompleted);
+	}
+
 }
