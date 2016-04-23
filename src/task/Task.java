@@ -2,25 +2,21 @@
 * Course Name: CST8132
 * Lab Section: 312
 * Student Name: Lucas Melin
-* Date: April 1, 2016
-* 
-* Purpose: This class models a task, which has a title,
-* priority (high, medium, low) and a boolean for whether
-* or not the task is complete.
 * 
 * Starter code provided in Assignment3 PDF
 * Carolyn MacIsaac (2016) personal communication
 * 
-* @version
-* @since 1.0
 */
 package task;
 
-
-// TODO: Auto-generated Javadoc
-
 /**
- * The Class Task.
+ * The class Task models a task.
+ * <p>
+ * The task has a title, priority (high, medium, low) and a 
+ * boolean for whether or not the task is complete.
+ * 
+ * @author Lucas Melin
+ * @version 1.2 April 22, 2016
  */
 public class Task {
 	
@@ -65,9 +61,9 @@ public class Task {
 	}
 	
 	/**
-	 * Getter for the title field.
+	 * Gets the title.
 	 *
-	 * @return title
+	 * @return title the title
 	 * @since 1.0
 	 */
 	public String getTitle(){
@@ -77,6 +73,7 @@ public class Task {
 	
 	/**
 	 * 	Setter for the Title field.
+	 * <p>
 	 *  Verifies that the incoming title is not null,
 	 *  not an empty string and not longer than 25 characters.
 	 *
@@ -117,9 +114,10 @@ public class Task {
 	
 	/**
 	 * Throws ValidationException
-	 * Verifies that the string is not null, not empty (length)
-	 * Make string lowercase (toLowerCase)
-	 * Verify that it's either high, medium or low (equals)
+	 * <p>
+	 * Verifies that the string is not null and not empty.
+	 * Makes string lowercase .
+	 * Verifies that it's either high, medium or low.
 	 * Set the priority into the priority field.
 	 *
 	 * @param priority the new priority
@@ -149,9 +147,9 @@ public class Task {
 	}
 	
 	/**
-	 * Gets the checks if is complete.
+	 * Gets the is-complete boolean.
 	 *
-	 * @return the checks if is complete
+	 * @return isComplete if is-complete
 	 */
 	public boolean getIsComplete(){
 		return isComplete;
@@ -160,7 +158,7 @@ public class Task {
 	/**
 	 * Sets the checks if is complete.
 	 *
-	 * @param isComplete the new checks if is complete
+	 * @param isComplete the new is-complete boolean
 	 */
 	public void setIsComplete(boolean isComplete){
 		this.isComplete = isComplete;
@@ -169,8 +167,11 @@ public class Task {
 	/**
 	 * @see java.lang.Object#toString()
 	 * Overrides toString method.
+	 * <p>
 	 * Returns title, priority and whether or not the task is complete
 	 * in a string.
+	 * 
+	 * @return string Combined task details
 	 */
 	@Override
 	public String toString(){
@@ -187,7 +188,10 @@ public class Task {
 	}
 	
 	/**
-	 * 
+	 *  Returns title, priority and whether or not the task is complete
+	 *  in a tab-separated string.
+	 *  
+	 *  @return string Combined string details
 	 */
 	public String createTabRecord(){
 		StringBuilder tabbedRecord = new StringBuilder();

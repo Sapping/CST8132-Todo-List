@@ -1,15 +1,10 @@
-/** File Name: ToDoListManager.java
+/* File Name: ToDoListManager.java
 * Course Name: CST8132
 * Lab Section: 312
 * Student Name: Lucas Melin
-* Date: April 1, 2016
-* 
-* Purpose: This class models a to-do list.
-* The user is presented with a menu from which they can choose
-* to add a task, toggle the completion state of a task, remove
-* a task, and view the information pertaining to all tasks. 
-* 
 */
+
+
 package task;
 
 import java.io.BufferedReader;
@@ -23,8 +18,22 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * The Class ToDoListManager.
- */
+ * The Class ToDoListManager models a to-do list.
+* <p>
+* The user is presented with a menu from which they can choose
+* to:
+* <li> Add task
+* <li> Remove task
+* <li> View tasks
+* <li> Save tasks
+* <li> Load tasks
+* <li> Sort by title
+* <li> Sort by priority
+* <li> Sort by completion
+* 
+* @author Lucas Melin
+* @version 1.2 April 22, 2016
+*/
 public class ToDoListManager {
 	
 	/** The add task. */
@@ -39,14 +48,19 @@ public class ToDoListManager {
 	/** The view tasks. */
 	private static final int VIEW_TASKS = 4;
 	
+	/** The save tasks. */
 	private static final int SAVE_TASKS = 5;
 	
+	/** The load tasks. */
 	private static final int LOAD_TASKS = 6;
 	
+	/** The sort by title. */
 	private static final int SORT_BY_TITLE = 7;
 
+	/** The sort by priority. */
 	private static final int SORT_BY_PRIORITY = 8;
 	
+	/** The sort by is-complete. */
 	private static final int SORT_BY_ISCOMPLETE = 9;
 	
 	/** The exit. */
@@ -60,7 +74,7 @@ public class ToDoListManager {
 	
 
 	/**
-	 * Instantiates a new to do list manager.
+	 * Instantiates the scanner and the ArrayList that holds the tasks.
 	 */
 	public ToDoListManager(){
 		keyboard = new Scanner(System.in);
@@ -68,7 +82,19 @@ public class ToDoListManager {
 	}
 	
 	/**
-	 * Run to do list.
+	 * Runs the toDoList selection.
+	 * <p>
+	 * Invokes menu and then receives user input.
+	 * Based on the user input, methods are called on the tasks ArrayList such as:
+	 * 
+	 * <li> Add task
+	 * <li> Remove task
+	 * <li> View tasks
+	 * <li> Save tasks
+	 * <li> Load tasks
+	 * <li> Sort by title
+	 * <li> Sort by priority
+	 * <li> Sort by completion
 	 */
 	public void runToDoList(){
 		int choice = 0;
@@ -123,7 +149,7 @@ public class ToDoListManager {
 	}
 	
 	/**
-	 * Show menu. Outputs menu on console, only called from runToDoList
+	 * Outputs menu on console, only called from runToDoList.
 	 */
 	private void showMenu(){
 		System.out.print("\n1 to add a task"
@@ -142,10 +168,11 @@ public class ToDoListManager {
 	
 	/**
 	 * Adds the task.
-	 * Get inputs from the user for task title and task priority
-	 * Instantiates a Task using the constructor
-	 * Assign the reference to the Task into the ArrayList named tasks
-	 * If an exception is thrown, the method ends
+	 * <p>
+	 * Get inputs from the user for task title and task priority.
+	 * Instantiates a Task using the constructor.
+	 * Assign the reference to the Task into the ArrayList named tasks.
+	 * If an exception is thrown, the method ends.
 	 */
 	private void addTask(){
 		// Get inputs from the user for a task title and priority
@@ -166,9 +193,10 @@ public class ToDoListManager {
 	
 	
 	/**
-	 * Toggle task complete.
-	 * Check that there are tasks before doing anything else
-	 * Ask user for index of Task in the ArrayList to toggle
+	 * Toggles task completion boolean.
+	 * <p>
+	 * Checks that there are tasks.
+	 * Asks user for index of Task in the ArrayList to toggle.
 	 * After obtaining the Task from the ArrayList flip the isCompleted boolean.
 	 */
 	private void toggleTaskComplete(){
@@ -192,9 +220,10 @@ public class ToDoListManager {
 	
 	/**
 	 * Removes the task.
-	 * Check that there are tasks before doing anything else
-	 * Ask user for index of Task in the ArrayList to remove
-	 * If an exception is thrown, the method ends
+	 * <p>
+	 * Check that there are tasks before doing anything else.
+	 * Ask user for index of Task in the ArrayList to remove.
+	 * If an exception is thrown, the method ends.
 	 */
 	private void removeTask(){
 		if (tasks.isEmpty()==false){ // Make sure there are tasks
@@ -217,10 +246,11 @@ public class ToDoListManager {
 	
 	
 	/**
-	 * View tasks.
-	 * Check that there are tasks before doing anything else
-	 * Loop over the ArrayList calling toString() on each Task
-	 * object as well as appending the index number to the output
+	 * Displays information about all tasks.
+	 * <p>
+	 * Formats tasks using the toString method, then displays them
+	 * on-screen along with their index location in the array.
+	 * 
 	 */
 	private void viewTasks(){
 		if (tasks.isEmpty()==false){
@@ -235,6 +265,14 @@ public class ToDoListManager {
 		}
 	}
 	
+	/**
+	 * Saves tasks found in the ArrayList to a file.
+	 * <p>
+	 * Each task is separated by a newline,
+	 * and the tasks are formatted using the createTabRecord method, which separates the values
+	 * of the task with tab characters. This method also overwrites any previous files of the
+	 * same name.
+	 */
 	private void saveTasks(){
 		if (tasks.isEmpty()==true){ // Make sure tasks ArrayList isn't empty
 			System.out.print("There are no  tasks to save");
@@ -243,13 +281,13 @@ public class ToDoListManager {
 			FileWriter taskList = null;
 			int numberOfTasks = 0;
 			try {
-				taskList = new FileWriter("C:\\Users\\Lucas\\Desktop\\tasks.txt");
+				taskList = new FileWriter("tasks.txt");
 				for(Task t:tasks){
 					taskList.append(t.createTabRecord());
 					taskList.append('\n');
 					numberOfTasks ++;
 				}
-				System.out.print("Saved "+numberOfTasks+" to file tasks.txt");
+				System.out.print("Saved "+numberOfTasks+" to file "+System.getProperty("user.dir")+"\tasks.txt");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -264,20 +302,18 @@ public class ToDoListManager {
 			}
 		}	
 	}
-		/*
-		 *o If there are no tasks in the ArrayList tell the user there is nothing to save
-o If there are tasks, save them into a file named “Tasks.txt” replacing the older file if it exists
-Loop over the ArrayList and write one line per Task into the file
-o Tip: write lines to the file, each one with the values for title, priority, isComplete as Strings
-separated by tabs (but no spaces between values) See method createTabRecord above
-		 * 
-		 */
 		
-	
+	/**
+	 * Loads tasks from a text file into an ArrayList.
+	 * <p>
+	 * Splits each line of the text file into a String array, splitting on the tab character
+	 * Creates a new task based on the data split from the line, then appends the task to the
+	 * ArrayList.
+	 */
 	private void loadTasks(){
 		BufferedReader taskList = null;		
 		try {// Open file with FileReader
-			taskList = new BufferedReader (new FileReader("C:\\Users\\Lucas\\Desktop\\tasks.txt"));
+			taskList = new BufferedReader (new FileReader("tasks.txt"));
 			
 			String taskLine;
 			int numberOfTasks = 0;
@@ -288,7 +324,7 @@ separated by tabs (but no spaces between values) See method createTabRecord abov
 				tasks.add(task1); // Add task to the end of the list 
 				numberOfTasks ++;
 			}
-			System.out.print("Loaded "+numberOfTasks+" to file tasks.txt");
+			System.out.print("Loaded "+numberOfTasks+" to file "+System.getProperty("user.dir")+"\tasks.txt");
 		} catch (FileNotFoundException e) { // If file doesn't exits
 			System.err.println("File not found tasks.txt (The system cannot find the file specified)");
 		} catch (ValidationException e){ // If task doesn't validate
@@ -305,17 +341,13 @@ separated by tabs (but no spaces between values) See method createTabRecord abov
 				}
 			}
 		}
-		
-		/*
-		 * o Clear the ArrayList of any Tasks
-o Read the records in from the text file (tip: loop)
-o Split each line into a String array, splitting on the tab character
-o Create a new Task using the data spit from the line
-o Add the new Task to the ArrayList
-		 */
-		
 	}
 	
+	/**
+	 * Sorts the task list using the TaskTitleComparator comparator.
+	 * <p>
+	 * Checks to make sure that the array is not empty before attempting to compare elements.
+	 */
 	private void sortByTitle(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskTitleComparator());
@@ -326,6 +358,11 @@ o Add the new Task to the ArrayList
 		}
 	}
 	
+	/**
+	 * Sorts the task list using the TaskPriorityComparator comparator.
+	 * <p>
+	 * Checks to make sure that the array is not empty before attempting to compare elements.
+	 */
 	private void sortByPriority(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskPriorityComparator());
@@ -337,6 +374,11 @@ o Add the new Task to the ArrayList
 		
 	}
 	
+	/**
+	 * Sorts the task list using the TaskIsCompleteComparator comparator.
+	 * <p>
+	 * Checks to make sure that the array is not empty before attempting to compare elements.
+	 */
 	private void sortByIsComplete(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskIsCompleteComparator());
