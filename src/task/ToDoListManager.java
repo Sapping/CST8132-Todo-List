@@ -70,7 +70,7 @@ public class ToDoListManager {
 	private ArrayList<Task> tasks;
 	
 	/** The keyboard. */
-	Scanner keyboard;
+	private Scanner keyboard;
 	
 
 	/**
@@ -310,7 +310,7 @@ public class ToDoListManager {
 	 * Creates a new task based on the data split from the line, then appends the task to the
 	 * ArrayList.
 	 */
-	private void loadTasks(){
+	private void loadTasks(){ // Should clear tasks array before loading
 		BufferedReader taskList = null;		
 		try {// Open file with FileReader
 			taskList = new BufferedReader (new FileReader("tasks.txt"));
