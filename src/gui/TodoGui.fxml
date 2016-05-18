@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiController">
+   <children>
+      <MenuBar prefHeight="32.0" prefWidth="758.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Save to file..." />
+                  <MenuItem mnemonicParsing="false" text="Load from file..." />
+              <MenuItem mnemonicParsing="false" text="Delete item" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" prefHeight="32.0" prefWidth="128.0" text="Lucas' ToDo List" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <SplitPane layoutY="54.0" orientation="VERTICAL">
+         <items>
+            <AnchorPane layoutX="14.0" layoutY="86.0" prefHeight="249.0" prefWidth="735.0">
+               <children>
+                  <ListView layoutY="49.0" prefHeight="200.0" prefWidth="756.0" />
+                  <TextField layoutX="296.0" layoutY="-1.0" prefHeight="31.0" prefWidth="432.0" />
+                  <Button mnemonicParsing="false" text="Add a task" />
+                  <ChoiceBox layoutX="122.0" prefWidth="150.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

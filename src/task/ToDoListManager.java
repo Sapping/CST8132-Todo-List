@@ -174,7 +174,7 @@ public class ToDoListManager {
 	 * Assign the reference to the Task into the ArrayList named tasks.
 	 * If an exception is thrown, the method ends.
 	 */
-	private void addTask(){
+	public void addTask(){
 		// Get inputs from the user for a task title and priority
 		System.out.println("Please enter a task title"
 				+ "\n(Title cannot be empty, max 25 characters)");
@@ -199,7 +199,7 @@ public class ToDoListManager {
 	 * Asks user for index of Task in the ArrayList to toggle.
 	 * After obtaining the Task from the ArrayList flip the isCompleted boolean.
 	 */
-	private void toggleTaskComplete(){
+	public void toggleTaskComplete(){
 		if (tasks.isEmpty()==false){ // Make sure there are tasks
 			System.out.println("What is the index of the task you'd like to toggle?");
 			try{
@@ -225,7 +225,7 @@ public class ToDoListManager {
 	 * Ask user for index of Task in the ArrayList to remove.
 	 * If an exception is thrown, the method ends.
 	 */
-	private void removeTask(){
+	public void removeTask(){
 		if (tasks.isEmpty()==false){ // Make sure there are tasks
 			System.out.println("What is the index of the task you'd like to remove?");
 			try{
@@ -273,7 +273,7 @@ public class ToDoListManager {
 	 * of the task with tab characters. This method also overwrites any previous files of the
 	 * same name.
 	 */
-	private void saveTasks(){
+	public void saveTasks(){
 		if (tasks.isEmpty()==true){ // Make sure tasks ArrayList isn't empty
 			System.out.print("There are no  tasks to save");
 		}
@@ -310,7 +310,7 @@ public class ToDoListManager {
 	 * Creates a new task based on the data split from the line, then appends the task to the
 	 * ArrayList.
 	 */
-	private void loadTasks(){ // Should clear tasks array before loading
+	public void loadTasks(){ // Should clear tasks array before loading
 		BufferedReader taskList = null;		
 		try {// Open file with FileReader
 			taskList = new BufferedReader (new FileReader("tasks.txt"));
@@ -348,7 +348,7 @@ public class ToDoListManager {
 	 * <p>
 	 * Checks to make sure that the array is not empty before attempting to compare elements.
 	 */
-	private void sortByTitle(){
+	public void sortByTitle(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskTitleComparator());
 			System.out.println("Sorting by Title is complete");
@@ -363,7 +363,7 @@ public class ToDoListManager {
 	 * <p>
 	 * Checks to make sure that the array is not empty before attempting to compare elements.
 	 */
-	private void sortByPriority(){
+	public void sortByPriority(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskPriorityComparator());
 			System.out.println("Sorting by Priority is complete");
@@ -379,7 +379,7 @@ public class ToDoListManager {
 	 * <p>
 	 * Checks to make sure that the array is not empty before attempting to compare elements.
 	 */
-	private void sortByIsComplete(){
+	public void sortByIsComplete(){
 		if (tasks.isEmpty()==false){
 			Collections.sort(tasks, new TaskIsCompleteComparator());
 			System.out.println("Sorting by Is-Complete is complete");
