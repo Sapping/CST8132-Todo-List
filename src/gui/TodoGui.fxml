@@ -41,7 +41,7 @@
                   <ListView layoutY="49.0" prefHeight="200.0" prefWidth="756.0" />
                   <TextField layoutX="296.0" layoutY="-1.0" prefHeight="31.0" prefWidth="432.0" />
                   <Button mnemonicParsing="false" text="Add a task" />
-                  <ChoiceBox layoutX="122.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="priorityChoiceBox" layoutX="122.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
          </items>
