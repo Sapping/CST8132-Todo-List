@@ -29,7 +29,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" prefHeight="32.0" prefWidth="128.0" text="Lucas' ToDo List" textAlignment="CENTER">
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" prefHeight="32.0" prefWidth="128.0" text="Lucas' ToDo List" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -38,9 +38,9 @@
          <items>
             <AnchorPane layoutX="14.0" layoutY="86.0" prefHeight="249.0" prefWidth="735.0">
                <children>
-                  <ListView layoutY="49.0" prefHeight="200.0" prefWidth="756.0" />
-                  <TextField layoutX="296.0" layoutY="-1.0" prefHeight="31.0" prefWidth="432.0" />
-                  <Button mnemonicParsing="false" text="Add a task" />
+                  <ListView fx:id="listView" layoutY="49.0" prefHeight="200.0" prefWidth="756.0" />
+                  <TextField fx:id="descriptionTextField" layoutX="296.0" layoutY="-1.0" prefHeight="31.0" prefWidth="432.0" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addTask" text="Add a task" />
                   <ChoiceBox fx:id="priorityChoiceBox" layoutX="122.0" prefWidth="150.0" />
                </children>
             </AnchorPane>

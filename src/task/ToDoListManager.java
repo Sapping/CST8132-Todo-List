@@ -343,6 +343,7 @@ public class ToDoListManager {
 		}
 	}
 	
+	
 	/**
 	 * Sorts the task list using the TaskTitleComparator comparator.
 	 * <p>
