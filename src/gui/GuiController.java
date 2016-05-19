@@ -67,13 +67,21 @@ public class GuiController implements Initializable{
 			FileWriter taskList = null;
 			int numberOfTasks = 0;
 			try {
-				taskList = new FileWriter("tasks.txt");
+				FileChooser chooser = new FileChooser();
+				chooser.setTitle("Save Task List");
+		        chooser.setInitialDirectory(
+		            new File(System.getProperty("user.home"))
+		        );
+		        chooser.getExtensionFilters().addAll(
+		        		new FileChooser.ExtensionFilter("TXT (*.txt)", "*.txt")); // Only TXT files can be saved
+		        
+				File file = chooser.showSaveDialog(new Stage());
+				taskList = new FileWriter(file);
 				for(Task t:tasks){
 					taskList.append(t.createTabRecord());
 					taskList.append('\n');
 					numberOfTasks ++;
 				}
-				System.out.print("Saved "+numberOfTasks+" to file "+System.getProperty("user.dir")+"\tasks.txt");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -90,7 +98,8 @@ public class GuiController implements Initializable{
 	}
 	
 	@FXML
-	public void loadTasks(){ // Should clear tasks array before loading
+	public void loadTasks(){
+		tasks.clear(); // Clear tasks array before loading
 		BufferedReader taskList = null;		
 		try {// Open file with FileReader
 			FileChooser chooser = new FileChooser(); // Instantiate FileChooser from JavaFX
@@ -112,7 +121,6 @@ public class GuiController implements Initializable{
 				tasks.add(task1); // Add task to the end of the list 
 				numberOfTasks ++;
 			}
-			System.out.print("Loaded "+numberOfTasks+" to file "+System.getProperty("user.dir")+"\tasks.txt");
 		} catch (FileNotFoundException e) { // If file doesn't exits
 			System.err.println("File not found tasks.txt (The system cannot find the file specified)");
 		} catch (ValidationException e){ // If task doesn't validate
