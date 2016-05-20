@@ -43,6 +43,7 @@ public class GuiController implements Initializable{
 		priorityChoiceBox.getItems().addAll("High","Medium","Low"); // Add all possible elements to priorityChoiceBox
 		priorityChoiceBox.getSelectionModel().select(0); // Set default selection to item[0]
 		tableView.setItems(tasks);
+		tableView.setEditable(true);
 		
 		taskCol.setCellValueFactory(new PropertyValueFactory<Task, String>("title"));
 		priorityCol.setCellValueFactory(new PropertyValueFactory<Task, String>("priority"));
@@ -51,10 +52,12 @@ public class GuiController implements Initializable{
 				new Callback<CellDataFeatures<Task, Boolean>, ObservableValue<Boolean>>(){
 					@Override
 					public ObservableValue<Boolean> call(CellDataFeatures<Task, Boolean> param){
-						return param.getValue().getIsComplete();
+						// Toggle checkbox
+						return param.getValue().completeProperty();
 					}
 				});
-		doneCol.setCellFactory( CheckBoxTableCell.forTableColumn(doneCol));
+		doneCol.setCellFactory(CheckBoxTableCell.forTableColumn(doneCol));
+		doneCol.setEditable(true);
 		tableView.getColumns().addAll(doneCol, taskCol, priorityCol);
 	}
 	
@@ -87,6 +90,10 @@ public class GuiController implements Initializable{
 	private MenuItem loadMenu;
 	
 	
+	@FXML
+	private void toggleTaskCompletion(){
+		
+	}
 
 	
 	@FXML

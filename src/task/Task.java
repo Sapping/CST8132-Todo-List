@@ -11,7 +11,6 @@ package task;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 
 /**
  * The class Task models a task.
@@ -31,7 +30,7 @@ public class Task {
 	private String priority;
 	
 	/** The is complete. */
-	private BooleanProperty isComplete;
+	private BooleanProperty isComplete = new SimpleBooleanProperty();
 	
 	/**
 	 *  Default Task constructor.
@@ -155,8 +154,8 @@ public class Task {
 	 *
 	 * @return isComplete if is-complete
 	 */
-	public ObservableValue<Boolean> getIsComplete(){
-		return isComplete;
+	public boolean getIsComplete(){
+		return isComplete.get();
 	}
 	
 	/**
@@ -166,6 +165,10 @@ public class Task {
 	 */
 	public void setIsComplete(boolean isComplete){
 		this.isComplete.set(isComplete);
+	}
+	
+	public BooleanProperty completeProperty(){
+		return isComplete;
 	}
 	
 	/**
@@ -184,7 +187,7 @@ public class Task {
 		taskDetails.append(" (");
 		taskDetails.append(getPriority());
 		taskDetails.append(") is ");
-		if (getIsComplete().getValue() == false){
+		if (getIsComplete() == false){
 			taskDetails.append("not ");		
 		}
 		taskDetails.append("complete");
