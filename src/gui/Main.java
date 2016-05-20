@@ -16,11 +16,15 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Lucas' ToDo List");
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.sizeToScene();
 		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	
 }
 

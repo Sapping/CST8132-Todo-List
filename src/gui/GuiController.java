@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -36,6 +38,7 @@ import task.Task;
 import task.ValidationException;
 
 public class GuiController implements Initializable{
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +61,10 @@ public class GuiController implements Initializable{
 				});
 		doneCol.setCellFactory(CheckBoxTableCell.forTableColumn(doneCol));
 		doneCol.setEditable(true);
-		tableView.getColumns().addAll(doneCol, taskCol, priorityCol);
+		doneCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.2));
+		priorityCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.2));
+		taskCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.6));
+		tableView.getColumns().addAll(doneCol, priorityCol, taskCol);
 	}
 	
 	@FXML
@@ -78,10 +84,9 @@ public class GuiController implements Initializable{
 	TableColumn<Task, String> priorityCol = new TableColumn<Task, String>("Priority");
 	@FXML //fx:id="priorityChoiceBox"
 	private ChoiceBox<String> priorityChoiceBox;
-	@FXML
-	private Menu fileMenu;
-	@FXML
-	private Menu helpMenu;
+	@FXML Menu fileMenu;
+	@FXML MenuItem exitItem;
+	@FXML Menu helpMenu;
 	@FXML
 	private Menu editMenu;
 	@FXML
@@ -91,8 +96,10 @@ public class GuiController implements Initializable{
 	@FXML
 	private MenuItem deleteMenu;
 	
-	
-
+	@FXML
+	 private void exitButtonAction(ActionEvent event) {
+	     Platform.exit();
+	 }
 
 	
 	@FXML
