@@ -88,17 +88,22 @@ public class GuiController implements Initializable{
 	private MenuItem saveMenu;
 	@FXML
 	private MenuItem loadMenu;
-	
-	
 	@FXML
-	private void toggleTaskCompletion(){
-		
-	}
+	private MenuItem deleteMenu;
+	
+	
+
 
 	
 	@FXML
 	private void addTask() throws ValidationException{
 		tasks.add(new Task(descriptionTextField.getText(), priorityChoiceBox.getValue()));		
+	}
+	
+	@FXML
+	private void removeTask() {
+		int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		tasks.remove(selectedIndex);		
 	}
 	
 	@FXML

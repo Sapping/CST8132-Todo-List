@@ -19,7 +19,7 @@
             <items>
                   <MenuItem fx:id="saveMenu" mnemonicParsing="false" onAction="#saveTasks" text="Save to file..." />
                   <MenuItem fx:id="loadMenu" mnemonicParsing="false" onAction="#loadTasks" text="Load from file..." />
-              <MenuItem mnemonicParsing="false" text="Delete item" />
+              <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#removeTask" text="Delete item" />
             </items>
           </Menu>
           <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
