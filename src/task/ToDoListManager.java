@@ -205,7 +205,7 @@ public class ToDoListManager {
 			try{
 				int userIndex = keyboard.nextInt(); // Get index of task
 				Task currentTask = tasks.get(userIndex); // Get the task
-				currentTask.setIsComplete(!currentTask.getIsComplete()); // Invert the boolean
+				currentTask.setIsComplete(!currentTask.getIsComplete().getValue()); // Invert the boolean
 			}catch (InputMismatchException e){
 				System.err.println(e.getMessage());				
 			}
