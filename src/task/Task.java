@@ -92,9 +92,9 @@ public class Task {
 			} else if ((title.trim().isEmpty())) { // Check if title is empty
 				throw new ValidationException(
 						"There was a problem adding a task:" + "\nTitle cannot be empty" + "\nPlease try again.");
-			} else if (title.length() > 25) {
+			} else if (title.length() > 50) {
 				throw new ValidationException("There was a problem adding a task:"
-						+ "\nTitle cannot exceed 25 characters" + "\nPlease try again.");
+						+ "\nTitle cannot exceed 50 characters" + "\nPlease try again.");
 			} else {
 				this.title = title.trim();
 			} 
